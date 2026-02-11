@@ -47,9 +47,12 @@ interface WorkRecord {
   startTime: string;
   endTime: string;
   workTime: string;
+  overtimeOutOfShift: string;
   overtimeHours: string;
+  nightTime: string;
   breakTime: string;
   status: string;
+  error: string;
 }
 ```
 

@@ -1,8 +1,8 @@
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Legend, Tooltip } from "recharts";
+import { Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { getMonthlyStats } from "@/lib/work-calculator";
-import { useContainerSize } from "@/hooks/use-container-size";
 import { useChartColors } from "@/hooks/use-chart-colors";
+import { useContainerSize } from "@/hooks/use-container-size";
+import { getMonthlyStats } from "@/lib/work-calculator";
 import type { WorkRecord } from "@/types/work-record";
 
 interface MonthlyComparisonChartProps {

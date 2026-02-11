@@ -1,9 +1,9 @@
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis, Tooltip } from "recharts";
+import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { minutesToHours, timeToMinutes } from "@/lib/work-calculator";
-import { generateFullMonthData } from "@/lib/chart-utils";
-import { useContainerSize } from "@/hooks/use-container-size";
 import { useChartColors } from "@/hooks/use-chart-colors";
+import { useContainerSize } from "@/hooks/use-container-size";
+import { generateFullMonthData } from "@/lib/chart-utils";
+import { minutesToHours, timeToMinutes } from "@/lib/work-calculator";
 import type { WorkRecord } from "@/types/work-record";
 
 interface OvertimeSummaryChartProps {

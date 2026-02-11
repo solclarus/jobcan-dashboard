@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+*.tsbuildinfo
 
 # Editor directories and files
 .vscode/*
@@ -23,5 +24,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Data files
-public/data/*.csv
+# Data files (uncomment to ignore your personal CSV)
+# public/data/*.csv
