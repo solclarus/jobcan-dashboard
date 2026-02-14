@@ -8,7 +8,7 @@
 - Tailwind CSS 4 + shadcn/ui
 - Zustand (状態管理)
 - Recharts
-- date-fns, next-themes
+- next-themes
 - oxlint + oxfmt
 
 ## 命名規則
@@ -21,8 +21,8 @@
 src/
 ├── components/
 │   ├── charts/      # グラフコンポーネント
-│   ├── filters/     # 月選択等
-│   ├── stats/       # 統計表示
+│   ├── filters/     # 月選択
+│   ├── stats/       # 統計カード
 │   ├── layout/      # ヘッダー等
 │   └── ui/          # shadcn/ui
 ├── lib/             # ユーティリティ
@@ -32,7 +32,7 @@ src/
 ```
 
 ## データフロー
-1. `public/data/index.json` → ファイル一覧取得
+1. `public/data/index.txt` → ファイルID一覧取得
 2. ユーザーが月選択
 3. CSV読み込み → パース → `WorkRecord[]`
 4. Zustand管理 → Recharts描画
@@ -47,12 +47,21 @@ interface WorkRecord {
   startTime: string;
   endTime: string;
   workTime: string;
-  overtimeOutOfShift: string;
   overtimeHours: string;
-  nightTime: string;
-  breakTime: string;
   status: string;
-  error: string;
+}
+
+interface DayData {
+  day: number;
+  dayOfWeek: number;
+  dayOfWeekLabel: string;
+  workHours: number;
+  overtimeHours: number;
+  startMinutes: number | null;
+  endMinutes: number | null;
+  isWeekend: boolean;
+  dayType: DayType;
+  hasWork: boolean;
 }
 ```
 
@@ -71,3 +80,4 @@ bun run format   # フォーマット (oxfmt)
 - CSV読み込み専用（編集不可）
 - ダークモード対応
 - GitHub Pages: 環境変数`BASE_URL`で設定
+- index.txt: 1行1IDのシンプルなテキストファイル
