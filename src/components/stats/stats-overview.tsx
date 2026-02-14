@@ -13,12 +13,22 @@ interface StatItemProps {
   subValue?: string;
   trend?: "up" | "down" | "neutral";
   icon: React.ReactNode;
+  color: "blue" | "green" | "orange" | "purple";
 }
 
-function StatItem({ label, value, subValue, trend, icon }: StatItemProps) {
+const colorClasses = {
+  blue: "bg-chart-1/15 text-chart-1",
+  green: "bg-chart-2/15 text-chart-2",
+  orange: "bg-chart-3/15 text-chart-3",
+  purple: "bg-chart-5/15 text-chart-5",
+};
+
+function StatItem({ label, value, subValue, trend, icon, color }: StatItemProps) {
   return (
     <div className="flex items-center gap-3 sm:gap-4 rounded-xl border bg-card p-3 sm:p-4">
-      <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+      <div
+        className={`flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg ${colorClasses[color]}`}
+      >
         {icon}
       </div>
       <div className="flex-1 min-w-0">
@@ -55,12 +65,14 @@ export function StatsOverview({ records, previousRecords = [] }: StatsOverviewPr
         subValue={prevStats ? `${workDaysDiff >= 0 ? "+" : ""}${workDaysDiff}日` : undefined}
         trend={workDaysDiff > 0 ? "up" : workDaysDiff < 0 ? "down" : "neutral"}
         icon={<Calendar className="h-4 w-4 sm:h-5 sm:w-5" />}
+        color="blue"
       />
       <StatItem
         label="総労働時間"
         value={`${stats.totalWorkHours.toFixed(1)}h`}
         subValue={`平均 ${stats.averageWorkHours.toFixed(1)}h/日`}
         icon={<Clock className="h-4 w-4 sm:h-5 sm:w-5" />}
+        color="green"
       />
       <StatItem
         label="残業時間"
@@ -70,12 +82,14 @@ export function StatsOverview({ records, previousRecords = [] }: StatsOverviewPr
         }
         trend={overtimeDiff > 0 ? "up" : overtimeDiff < 0 ? "down" : "neutral"}
         icon={<Timer className="h-4 w-4 sm:h-5 sm:w-5" />}
+        color="orange"
       />
       <StatItem
         label="平均出勤"
         value={stats.averageStartTime}
         subValue={`退勤 ${stats.averageEndTime}`}
         icon={<TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />}
+        color="purple"
       />
     </div>
   );

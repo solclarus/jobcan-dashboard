@@ -1,6 +1,8 @@
 import { MonthSelector } from "@/components/filters/month-selector";
-import { ThemeToggle } from "./theme-toggle";
+import { Button } from "@/components/ui/button";
 import type { CsvFile } from "@/types/csv-file";
+import { Github } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 interface HeaderProps {
   files: CsvFile[];
@@ -10,12 +12,27 @@ interface HeaderProps {
 
 export function Header({ files, selectedFile, onSelectFile }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="mx-auto flex h-12 sm:h-14 max-w-7xl items-center justify-between px-3 sm:px-4 lg:px-8">
-        <h1 className="text-sm sm:text-lg font-semibold truncate">勤怠ダッシュボード</h1>
-        <div className="flex items-center gap-2 sm:gap-4">
-          <MonthSelector files={files} selectedFile={selectedFile} onSelect={onSelectFile} />
+        <MonthSelector files={files} selectedFile={selectedFile} onSelect={onSelectFile} />
+        <div className="flex items-center gap-2">
           <ThemeToggle />
+          <Button
+            size={"icon"}
+            variant={"outline"}
+            className="cursor-pointer"
+            aria-label="テーマ切り替え"
+            asChild
+          >
+            <a
+              href="https://github.com/solclarus/jobcan-dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
+              <Github className="h-4 w-4" />
+            </a>
+          </Button>
         </div>
       </div>
     </header>

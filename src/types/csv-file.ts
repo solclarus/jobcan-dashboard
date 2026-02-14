@@ -5,7 +5,3 @@ export interface CsvFile {
   year: number;
   month: number;
 }
-
-export interface CsvIndex {
-  files: CsvFile[];
-}
