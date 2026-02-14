@@ -1,11 +1,6 @@
-import { DailyWorkChart } from "@/components/charts/daily-work-chart";
-import { MonthlyComparisonChart } from "@/components/charts/monthly-comparison-chart";
-import { OvertimeSummaryChart } from "@/components/charts/overtime-summary-chart";
-import { TimeDistributionChart } from "@/components/charts/time-distribution-chart";
-import { WeekdayAnalysisChart } from "@/components/charts/weekday-analysis-chart";
+import { AttendanceChart } from "@/components/charts/attendance-chart";
 import { Header } from "@/components/layout/header";
 import { StatsOverview } from "@/components/stats/stats-overview";
-import { formatMonthLabel } from "@/lib/csv-loader";
 import { useWorkStore } from "@/stores/use-work-store";
 import { useEffect } from "react";
 
@@ -16,9 +11,6 @@ function App() {
   useEffect(() => {
     loadIndex();
   }, [loadIndex]);
-
-  const currentIndex = selectedFile ? files.findIndex((f) => f.id === selectedFile.id) : -1;
-  const previousFile = currentIndex > 0 ? files[currentIndex - 1] : null;
 
   return (
     <div className="min-h-screen bg-background">
@@ -39,23 +31,7 @@ function App() {
         ) : records.length > 0 ? (
           <div className="space-y-4 sm:space-y-6">
             <StatsOverview records={records} previousRecords={previousRecords} />
-
-            <DailyWorkChart records={records} />
-
-            <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-              <TimeDistributionChart records={records} />
-              <OvertimeSummaryChart records={records} />
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
-              <WeekdayAnalysisChart records={records} />
-              <MonthlyComparisonChart
-                currentRecords={records}
-                previousRecords={previousRecords}
-                currentMonth={selectedFile ? formatMonthLabel(selectedFile) : ""}
-                previousMonth={previousFile ? formatMonthLabel(previousFile) : ""}
-              />
-            </div>
+            <AttendanceChart records={records} />
           </div>
         ) : (
           <div className="flex h-64 items-center justify-center">

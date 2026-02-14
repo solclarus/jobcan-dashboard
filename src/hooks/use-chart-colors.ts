@@ -40,11 +40,11 @@ function getColorsFromCss(): ChartColors {
 }
 
 const DEFAULT_COLORS: ChartColors = {
-  chart1: "hsl(221 83% 53%)",
-  chart2: "hsl(142 76% 36%)",
-  chart3: "hsl(38 92% 50%)",
-  chart4: "hsl(0 84% 60%)",
-  chart5: "hsl(262 83% 58%)",
+  chart1: "hsl(215 55% 55%)",
+  chart2: "hsl(160 45% 45%)",
+  chart3: "hsl(35 60% 52%)",
+  chart4: "hsl(12 55% 55%)",
+  chart5: "hsl(255 45% 58%)",
   muted: "hsl(210 40% 96.1%)",
   mutedForeground: "hsl(215.4 16.3% 46.9%)",
   border: "hsl(214.3 31.8% 91.4%)",
