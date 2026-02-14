@@ -4,6 +4,7 @@ import { useContainerSize } from "@/hooks/use-container-size";
 import { type DayData, generateFullMonthData, getDayTypeConfig } from "@/lib/chart-utils";
 import { formatMinutesToTime } from "@/lib/work-calculator";
 import type { WorkRecord } from "@/types/work-record";
+import { BarChart3 } from "lucide-react";
 import {
   Area,
   Bar,
@@ -38,8 +39,13 @@ export function AttendanceChart({ records }: AttendanceChartProps) {
   if (data.length === 0) {
     return (
       <Card className="col-span-full">
-        <CardHeader>
-          <CardTitle>出退勤記録</CardTitle>
+        <CardHeader className="pb-2">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-chart-1/15 text-chart-1">
+              <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5" />
+            </div>
+            <CardTitle className="text-base font-medium">出退勤記録</CardTitle>
+          </div>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">データがありません</p>
@@ -113,7 +119,12 @@ export function AttendanceChart({ records }: AttendanceChartProps) {
   return (
     <Card className="col-span-full">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-medium">出退勤記録</CardTitle>
+        <div className="flex items-center gap-3">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-chart-1/15 text-chart-1">
+            <BarChart3 className="h-4 w-4 sm:h-5 sm:w-5" />
+          </div>
+          <CardTitle className="text-base font-medium">出退勤記録</CardTitle>
+        </div>
       </CardHeader>
       <CardContent className="px-2 sm:px-6">
         <div ref={containerRef} className="flex" style={{ width: "100%" }}>

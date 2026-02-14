@@ -17,7 +17,8 @@ interface WorkState {
   records: WorkRecord[];
   previousRecords: WorkRecord[];
   allMonthlyStats: MonthlyStatsWithLabel[];
-  isLoading: boolean;
+  isInitialLoading: boolean;
+  isDataLoading: boolean;
   error: string | null;
 
   loadIndex: () => Promise<void>;
@@ -31,32 +32,35 @@ export const useWorkStore = create<WorkState>((set, get) => ({
   records: [],
   previousRecords: [],
   allMonthlyStats: [],
-  isLoading: false,
+  isInitialLoading: true,
+  isDataLoading: false,
   error: null,
 
   loadIndex: async () => {
-    set({ isLoading: true, error: null });
+    set({ isInitialLoading: true, error: null });
     try {
       const files = await loadCsvIndex();
-      set({ files, isLoading: false });
+      set({ files });
 
       if (files.length > 0 && !get().selectedFile) {
         const latestFile = files[files.length - 1];
         await get().selectFile(latestFile);
       }
 
+      set({ isInitialLoading: false });
+
       // 全月の統計をバックグラウンドでロード
       get().loadAllStats();
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : "Failed to load index",
-        isLoading: false,
+        isInitialLoading: false,
       });
     }
   },
 
   selectFile: async (file: CsvFile) => {
-    set({ isLoading: true, error: null, selectedFile: file });
+    set({ isDataLoading: true, error: null, selectedFile: file });
     try {
       const records = await loadCsvFile(file.path);
 
@@ -69,11 +73,11 @@ export const useWorkStore = create<WorkState>((set, get) => ({
         previousRecords = await loadCsvFile(prevFile.path);
       }
 
-      set({ records, previousRecords, isLoading: false });
+      set({ records, previousRecords, isDataLoading: false });
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : "Failed to load CSV file",
-        isLoading: false,
+        isDataLoading: false,
       });
     }
   },

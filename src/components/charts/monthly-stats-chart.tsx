@@ -12,6 +12,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useChartColors } from "@/hooks/use-chart-colors";
 import type { MonthlyStatsWithLabel } from "@/stores/use-work-store";
+import { TrendingUp } from "lucide-react";
 
 interface MonthlyStatsChartProps {
   stats: MonthlyStatsWithLabel[];
@@ -24,8 +25,13 @@ export function MonthlyStatsChart({ stats, selectedMonth }: MonthlyStatsChartPro
   if (stats.length === 0) {
     return (
       <Card>
-        <CardHeader>
-          <CardTitle className="text-base font-medium">月別統計</CardTitle>
+        <CardHeader className="pb-2">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-chart-5/15 text-chart-5">
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
+            </div>
+            <CardTitle className="text-base font-medium">月別統計</CardTitle>
+          </div>
         </CardHeader>
         <CardContent>
           <p className="text-muted-foreground">データがありません</p>
@@ -43,7 +49,12 @@ export function MonthlyStatsChart({ stats, selectedMonth }: MonthlyStatsChartPro
   return (
     <Card>
       <CardHeader className="pb-2">
-        <CardTitle className="text-base font-medium">月別統計</CardTitle>
+        <div className="flex items-center gap-3">
+          <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-chart-5/15 text-chart-5">
+            <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5" />
+          </div>
+          <CardTitle className="text-base font-medium">月別統計</CardTitle>
+        </div>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={240}>

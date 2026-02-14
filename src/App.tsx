@@ -5,8 +5,17 @@ import { useWorkStore } from "@/stores/use-work-store";
 import { useEffect } from "react";
 
 function App() {
-  const { files, selectedFile, records, previousRecords, isLoading, error, loadIndex, selectFile } =
-    useWorkStore();
+  const {
+    files,
+    selectedFile,
+    records,
+    previousRecords,
+    isInitialLoading,
+    isDataLoading,
+    error,
+    loadIndex,
+    selectFile,
+  } = useWorkStore();
 
   useEffect(() => {
     loadIndex();
@@ -21,7 +30,7 @@ function App() {
             {error}
           </div>
         )}
-        {isLoading ? (
+        {isInitialLoading ? (
           <div className="flex h-64 items-center justify-center">
             <div className="flex items-center gap-2 text-muted-foreground">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -29,7 +38,9 @@ function App() {
             </div>
           </div>
         ) : records.length > 0 ? (
-          <div className="space-y-4 sm:space-y-6">
+          <div
+            className={`space-y-4 sm:space-y-6 ${isDataLoading ? "opacity-50 pointer-events-none" : ""}`}
+          >
             <StatsOverview records={records} previousRecords={previousRecords} />
             <AttendanceChart records={records} />
           </div>
