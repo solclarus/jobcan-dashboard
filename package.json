@@ -1,7 +1,22 @@
 {
   "name": "jobcan-dashboard",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Dashboard for visualizing Jobcan attendance data with charts",
+  "author": "solclarus",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solclarus/jobcan-dashboard.git"
+  },
+  "keywords": [
+    "jobcan",
+    "attendance",
+    "dashboard",
+    "react",
+    "recharts",
+    "visualization"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

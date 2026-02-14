@@ -26,3 +26,4 @@ dist-ssr
 
 # Data files (uncomment to ignore your personal CSV)
 # public/data/*.csv
+.claude

@@ -1,6 +1,12 @@
 # Jobcan Dashboard
 
+[![CI](https://github.com/solclarus/jobcan-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/solclarus/jobcan-dashboard/actions/workflows/ci.yml)
+[![Deploy](https://github.com/solclarus/jobcan-dashboard/actions/workflows/deploy.yml/badge.svg)](https://github.com/solclarus/jobcan-dashboard/actions/workflows/deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ジョブカンの勤怠データをグラフで可視化するダッシュボード。
+
+**[Demo](https://solclarus.github.io/jobcan-dashboard/)**
 
 ## Features
 
