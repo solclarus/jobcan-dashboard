@@ -14,14 +14,6 @@ export interface WorkRecord {
   error: string;
 }
 
-export interface DailyStats {
-  date: Date;
-  workMinutes: number;
-  overtimeMinutes: number;
-  isHoliday: boolean;
-  isAbsent: boolean;
-}
-
 export interface MonthlyStats {
   totalWorkDays: number;
   totalWorkHours: number;

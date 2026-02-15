@@ -212,7 +212,7 @@ export function AttendanceChart({ records }: AttendanceChartProps) {
                       const dayData = payload[0].payload as DayData;
                       const config = dayTypeConfig[dayData.dayType];
                       return (
-                        <div className="rounded-lg border border-border bg-background p-3 shadow-sm min-w-[160px]">
+                        <div className="rounded-lg border border-border bg-background p-3 shadow-sm min-w-40">
                           <div className="flex items-center justify-between gap-3 mb-2">
                             <p className="text-sm font-semibold text-foreground">
                               {dayData.day}日 ({dayData.dayOfWeekLabel})

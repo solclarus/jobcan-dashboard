@@ -13,6 +13,8 @@ export type DayType =
   | "publicHoliday"
   | "absent"
   | "paidLeave"
+  | "halfDayLeave"
+  | "specialLeave"
   | "late"
   | "earlyLeave";
 
@@ -36,7 +38,6 @@ const DAY_OF_WEEK_LABELS = ["日", "月", "火", "水", "木", "金", "土"];
 export interface DayTypeConfig {
   label: string;
   color: string;
-  bgClass: string;
 }
 
 function getDayType(record: WorkRecord | undefined, isWeekend: boolean): DayType {
@@ -49,12 +50,18 @@ function getDayType(record: WorkRecord | undefined, isWeekend: boolean): DayType
   // 勤怠状況による分類
   if (status === "欠勤") return "absent";
   if (status === "有休" || status === "有給" || status === "有給休暇") return "paidLeave";
+  if (status.includes("半休") || status === "午前半休" || status === "午後半休")
+    return "halfDayLeave";
+  if (status === "特別休暇" || status === "特休") return "specialLeave";
   if (status === "遅刻") return "late";
   if (status === "早退") return "earlyLeave";
 
   // 休日区分による分類
   if (holidayType === "祝日") return "publicHoliday";
   if (holidayType === "公休") return "holiday";
+  if (holidayType === "有給" || holidayType === "有休") return "paidLeave";
+  if (holidayType === "半休") return "halfDayLeave";
+  if (holidayType === "特休" || holidayType === "特別休暇") return "specialLeave";
 
   // シフトがない日
   if (!shiftStart) {
@@ -130,25 +137,15 @@ export function generateFullMonthData(records: WorkRecord[]): DayData[] {
 
 export function getDayTypeConfig(colors: ChartColors): Record<DayType, DayTypeConfig> {
   return {
-    normal: { label: "通常勤務", color: colors.chart1, bgClass: "bg-chart-1" },
-    weekend: { label: "週末", color: colors.muted, bgClass: "bg-muted" },
-    holiday: { label: "休日", color: colors.muted, bgClass: "bg-muted" },
-    publicHoliday: { label: "祝日", color: colors.chart4, bgClass: "bg-chart-4" },
-    absent: { label: "欠勤", color: colors.chart4, bgClass: "bg-destructive" },
-    paidLeave: { label: "有給休暇", color: colors.chart2, bgClass: "bg-chart-2" },
-    late: { label: "遅刻", color: colors.chart3, bgClass: "bg-chart-3" },
-    earlyLeave: { label: "早退", color: colors.chart3, bgClass: "bg-chart-3" },
+    normal: { label: "通常勤務", color: colors.chart1 },
+    weekend: { label: "週末", color: colors.muted },
+    holiday: { label: "休日", color: colors.muted },
+    publicHoliday: { label: "祝日", color: colors.chart4 },
+    absent: { label: "欠勤", color: colors.chart4 },
+    paidLeave: { label: "有給", color: colors.chart2 },
+    halfDayLeave: { label: "半休", color: colors.chart5 },
+    specialLeave: { label: "特休", color: colors.chart2 },
+    late: { label: "遅刻", color: colors.chart3 },
+    earlyLeave: { label: "早退", color: colors.chart3 },
   };
 }
-
-// 後方互換性のためのデフォルト値（静的な色が必要な場合用）
-export const DAY_TYPE_CONFIG: Record<DayType, DayTypeConfig> = {
-  normal: { label: "通常勤務", color: "hsl(215 55% 55%)", bgClass: "bg-chart-1" },
-  weekend: { label: "週末", color: "hsl(215.4 16.3% 46.9%)", bgClass: "bg-muted" },
-  holiday: { label: "休日", color: "hsl(215.4 16.3% 46.9%)", bgClass: "bg-muted" },
-  publicHoliday: { label: "祝日", color: "hsl(12 55% 55%)", bgClass: "bg-chart-4" },
-  absent: { label: "欠勤", color: "hsl(12 55% 55%)", bgClass: "bg-destructive" },
-  paidLeave: { label: "有給休暇", color: "hsl(160 45% 45%)", bgClass: "bg-chart-2" },
-  late: { label: "遅刻", color: "hsl(35 60% 52%)", bgClass: "bg-chart-3" },
-  earlyLeave: { label: "早退", color: "hsl(35 60% 52%)", bgClass: "bg-chart-3" },
-};

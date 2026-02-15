@@ -1,4 +1,6 @@
 import { AttendanceChart } from "@/components/charts/attendance-chart";
+import { MonthlyStatsChart } from "@/components/charts/monthly-stats-chart";
+import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { StatsOverview } from "@/components/stats/stats-overview";
 import { useWorkStore } from "@/stores/use-work-store";
@@ -10,6 +12,7 @@ function App() {
     selectedFile,
     records,
     previousRecords,
+    allMonthlyStats,
     isInitialLoading,
     isDataLoading,
     error,
@@ -22,9 +25,9 @@ function App() {
   }, [loadIndex]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col bg-background">
       <Header files={files} selectedFile={selectedFile} onSelectFile={selectFile} />
-      <main className="mx-auto max-w-7xl px-2 py-4 sm:px-4 sm:py-6 lg:px-8">
+      <main className="mx-auto w-full max-w-7xl flex-1 px-2 py-4 sm:px-4 sm:py-6 lg:px-8">
         {error && (
           <div className="mb-4 rounded-lg border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
             {error}
@@ -43,6 +46,12 @@ function App() {
           >
             <StatsOverview records={records} previousRecords={previousRecords} />
             <AttendanceChart records={records} />
+            <MonthlyStatsChart
+              stats={allMonthlyStats}
+              selectedMonth={
+                selectedFile ? `${selectedFile.year}/${selectedFile.month}` : undefined
+              }
+            />
           </div>
         ) : (
           <div className="flex h-64 items-center justify-center">
@@ -53,6 +62,7 @@ function App() {
           </div>
         )}
       </main>
+      <Footer />
     </div>
   );
 }
