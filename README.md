@@ -8,6 +8,8 @@
 
 **[Demo](https://solclarus.github.io/jobcan-dashboard/)**
 
+![Screenshot](public/images/screenshot.jpeg)
+
 ## Features
 
 ### 統計カード
