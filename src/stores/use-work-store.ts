@@ -86,22 +86,23 @@ export const useWorkStore = create<WorkState>((set, get) => ({
     const { files } = get();
     if (files.length === 0) return;
 
-    try {
-      const statsPromises = files.map(async (file) => {
+    const results: MonthlyStatsWithLabel[] = [];
+
+    for (const file of files) {
+      try {
         const records = await loadCsvFile(file.path);
         const stats = getMonthlyStats(records);
-        return {
+        results.push({
           ...stats,
           month: `${file.year}/${file.month}`,
           year: file.year,
           monthNum: file.month,
-        };
-      });
-
-      const allStats = await Promise.all(statsPromises);
-      set({ allMonthlyStats: allStats });
-    } catch (error) {
-      console.error("Failed to load all stats:", error);
+        });
+      } catch (error) {
+        console.error(`Failed to load stats for ${file.id}:`, error);
+      }
     }
+
+    set({ allMonthlyStats: results });
   },
 }));
