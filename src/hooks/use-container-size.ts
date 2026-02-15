@@ -1,31 +1,34 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 interface Size {
   width: number;
   height: number;
 }
 
-export function useContainerSize<T extends HTMLElement>(): [React.RefObject<T | null>, Size] {
-  const ref = useRef<T>(null);
+export function useContainerSize<T extends HTMLElement>(): [(node: T | null) => void, Size] {
   const [size, setSize] = useState<Size>({ width: 0, height: 0 });
+  const observerRef = useRef<ResizeObserver | null>(null);
 
-  useEffect(() => {
-    const element = ref.current;
-    if (!element) return;
+  const ref = useCallback((node: T | null) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
 
-    const updateSize = () => {
-      setSize({
-        width: element.clientWidth,
-        height: element.clientHeight,
-      });
-    };
+    if (node) {
+      const updateSize = () => {
+        setSize({
+          width: node.clientWidth,
+          height: node.clientHeight,
+        });
+      };
 
-    updateSize();
+      updateSize();
 
-    const resizeObserver = new ResizeObserver(updateSize);
-    resizeObserver.observe(element);
-
-    return () => resizeObserver.disconnect();
+      const resizeObserver = new ResizeObserver(updateSize);
+      resizeObserver.observe(node);
+      observerRef.current = resizeObserver;
+    }
   }, []);
 
   return [ref, size];
