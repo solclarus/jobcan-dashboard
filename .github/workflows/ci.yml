@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: "22"
           cache: true
+          version: "0.1.18"
 
       - run: vp install
       - run: vp check
