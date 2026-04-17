@@ -23,7 +23,7 @@ function App() {
   } = useWorkStore();
 
   useEffect(() => {
-    loadIndex();
+    void loadIndex();
   }, [loadIndex]);
 
   return (

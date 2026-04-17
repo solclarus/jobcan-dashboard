@@ -50,7 +50,7 @@ export const useWorkStore = create<WorkState>((set, get) => ({
       set({ isInitialLoading: false });
 
       // 全月の統計をバックグラウンドでロード
-      get().loadAllStats();
+      void get().loadAllStats();
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : "Failed to load index",

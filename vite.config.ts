@@ -4,7 +4,7 @@ import { defineConfig } from "vite-plus";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
-  base: process.env.BASE_URL || "/",
+  base: process.env["BASE_URL"] || "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -15,7 +15,13 @@ export default defineConfig({
     environment: "happy-dom",
     include: ["src/**/*.test.{ts,tsx}"],
   },
+  lint: {
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+  },
   staged: {
-    "*.{ts,tsx}": "vp lint --fix",
+    "*.{ts,tsx}": "vp check --fix",
   },
 });
