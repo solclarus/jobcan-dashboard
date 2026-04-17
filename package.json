@@ -24,8 +24,6 @@
     "preview": "vp preview",
     "test": "vp test",
     "check": "vp check",
-    "lint": "vp lint",
-    "format": "vp fmt",
     "prepare": "vp config"
   },
   "dependencies": {
@@ -43,19 +41,14 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^24.10.1",
+    "@types/node": "^24.12.2",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "happy-dom": "^20.9.0",
-    "shadcn": "^3.8.4",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
     "vite-plus": "^0.1.18"
-  },
-  "overrides": {
-    "vite": "npm:@voidzero-dev/vite-plus-core@0.1.18",
-    "vitest": "npm:@voidzero-dev/vite-plus-test@0.1.18"
   },
   "packageManager": "pnpm@10.33.0"
 }
