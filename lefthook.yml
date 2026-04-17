@@ -1,21 +1,12 @@
 pre-commit:
-  parallel: true
   commands:
-    lint:
-      run: bun run lint
-    format:
-      run: bun run format:check
+    staged:
+      run: npx vp staged
 
 pre-push:
-  parallel: true
   commands:
-    typecheck:
-      skip:
-        - merge
-        - rebase
-      run: bun run tsc
     build:
       skip:
         - merge
         - rebase
-      run: bun run build
+      run: npx vp build

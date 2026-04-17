@@ -13,31 +13,35 @@
 ## Features
 
 ### 統計カード
+
 - 勤務日数（前月比）
 - 総労働時間・平均労働時間
 - 残業時間（前月比）
 - 平均出退勤時刻
 
 ### 出退勤チャート
+
 - 出勤・退勤時刻の折れ線グラフ
 - 労働時間の棒グラフ
 - 曜日ラベル・休日/祝日の色分け
 - 勤怠状況ラベル（有給・半休・遅刻・早退など）
 
 ### 月別統計チャート
+
 - 総労働時間の推移（棒グラフ）
 - 残業時間の推移（線グラフ）
 - 勤務日数の推移（線グラフ）
 
 ### その他
+
 - ダークモード対応
 - レスポンシブ対応（横スクロール）
 - 月選択（ドロップダウン・矢印ナビゲーション）
 
 ## Tech Stack
 
-- **Runtime**: Bun
-- **Framework**: React 19 + TypeScript + Vite
+- **Toolchain**: Vite+ (Vite 8 + Vitest + Oxlint + Oxfmt)
+- **Framework**: React 19 + TypeScript
 - **Styling**: Tailwind CSS 4 + shadcn/ui
 - **Charts**: Recharts
 - **State**: Zustand
@@ -46,13 +50,13 @@
 
 ```bash
 # インストール
-bun install
+npm install   # npm / pnpm / yarn どれでも可
 
 # 開発サーバー起動
-bun dev
+npm run dev
 
 # ビルド
-bun run build
+npm run build
 ```
 
 ## データの追加
@@ -80,6 +84,7 @@ public/data/2025-02.csv
 ジョブカンからエクスポートしたCSVをそのまま使用可能。
 
 必要なカラム:
+
 - 日付、休日区分
 - シフト開始 / シフト終了
 - 出勤時刻 / 退勤時刻

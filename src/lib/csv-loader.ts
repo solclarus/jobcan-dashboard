@@ -33,3 +33,7 @@ export async function loadCsvFile(path: string): Promise<WorkRecord[]> {
 export function formatMonthLabel(file: CsvFile): string {
   return `${file.year}年${file.month}月`;
 }
+
+export function formatMonthId(file: CsvFile): string {
+  return `${file.year}/${file.month}`;
+}

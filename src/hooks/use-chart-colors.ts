@@ -58,11 +58,11 @@ export function useChartColors(): ChartColors {
 
   useEffect(() => {
     // テーマ変更後にCSSが適用されるのを待つ
-    const timer = setTimeout(() => {
+    const id = requestAnimationFrame(() => {
       setColors(getColorsFromCss());
-    }, 0);
+    });
 
-    return () => clearTimeout(timer);
+    return () => cancelAnimationFrame(id);
   }, [resolvedTheme]);
 
   return colors;

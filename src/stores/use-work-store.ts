@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { CsvFile } from "@/types/csv-file";
 import type { WorkRecord } from "@/types/work-record";
-import { loadCsvFile, loadCsvIndex } from "@/lib/csv-loader";
+import { loadCsvFile, loadCsvIndex, formatMonthId } from "@/lib/csv-loader";
 import { getMonthlyStats } from "@/lib/work-calculator";
 import type { MonthlyStats } from "@/types/work-record";
 
@@ -86,23 +86,18 @@ export const useWorkStore = create<WorkState>((set, get) => ({
     const { files } = get();
     if (files.length === 0) return;
 
-    const results: MonthlyStatsWithLabel[] = [];
-
-    for (const file of files) {
-      try {
+    const settled = await Promise.allSettled(
+      files.map(async (file) => {
         const records = await loadCsvFile(file.path);
         const stats = getMonthlyStats(records);
-        results.push({
-          ...stats,
-          month: `${file.year}/${file.month}`,
-          year: file.year,
-          monthNum: file.month,
-        });
-      } catch (error) {
-        console.error(`Failed to load stats for ${file.id}:`, error);
-      }
-    }
+        return { ...stats, month: formatMonthId(file), year: file.year, monthNum: file.month };
+      }),
+    );
 
-    set({ allMonthlyStats: results });
+    const allMonthlyStats = settled
+      .filter((r): r is PromiseFulfilledResult<MonthlyStatsWithLabel> => r.status === "fulfilled")
+      .map((r) => r.value);
+
+    set({ allMonthlyStats });
   },
 }));

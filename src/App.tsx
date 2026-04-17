@@ -3,6 +3,8 @@ import { MonthlyStatsChart } from "@/components/charts/monthly-stats-chart";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { StatsOverview } from "@/components/stats/stats-overview";
+import { formatMonthId } from "@/lib/csv-loader";
+import { cn } from "@/lib/utils";
 import { useWorkStore } from "@/stores/use-work-store";
 import { useEffect } from "react";
 
@@ -42,15 +44,16 @@ function App() {
           </div>
         ) : records.length > 0 ? (
           <div
-            className={`space-y-4 sm:space-y-6 ${isDataLoading ? "opacity-50 pointer-events-none" : ""}`}
+            className={cn(
+              "space-y-4 sm:space-y-6",
+              isDataLoading && "pointer-events-none opacity-50",
+            )}
           >
             <StatsOverview records={records} previousRecords={previousRecords} />
             <AttendanceChart records={records} />
             <MonthlyStatsChart
               stats={allMonthlyStats}
-              selectedMonth={
-                selectedFile ? `${selectedFile.year}/${selectedFile.month}` : undefined
-              }
+              selectedMonth={selectedFile ? formatMonthId(selectedFile) : undefined}
             />
           </div>
         ) : (
