@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><g clip-path="url(#clip0_2001_2)">
+<path d="M25 0H7C3.13401 0 0 3.13401 0 7V25C0 28.866 3.13401 32 7 32H25C28.866 32 32 28.866 32 25V7C32 3.13401 28.866 0 25 0Z" fill="url(#paint0_linear_2001_2)"></path>
+<path d="M16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26Z" fill="white" fill-opacity="0.12" stroke="white" stroke-width="2"></path>
+<path opacity="0.7" d="M12.3333 22H11.6667C11.2985 22 11 22.4477 11 23V25C11 25.5523 11.2985 26 11.6667 26H12.3333C12.7015 26 13 25.5523 13 25V23C13 22.4477 12.7015 22 12.3333 22Z" fill="white"></path>
+<path opacity="0.85" d="M16.3333 21H15.6667C15.2985 21 15 21.3444 15 21.7692V25.2308C15 25.6556 15.2985 26 15.6667 26H16.3333C16.7015 26 17 25.6556 17 25.2308V21.7692C17 21.3444 16.7015 21 16.3333 21Z" fill="white"></path>
+<path d="M20.3333 20H19.6667C19.2985 20 19 20.2985 19 20.6667V25.3333C19 25.7015 19.2985 26 19.6667 26H20.3333C20.7015 26 21 25.7015 21 25.3333V20.6667C21 20.2985 20.7015 20 20.3333 20Z" fill="white"></path>
+<path d="M16 17C16.5523 17 17 16.5523 17 16C17 15.4477 16.5523 15 16 15C15.4477 15 15 15.4477 15 16C15 16.5523 15.4477 17 16 17Z" fill="white"></path>
+<rect x="10" y="15.75" width="6" height="0.5" rx="0.25" fill="white"></rect>
+<rect x="15.75" y="16" width="8" height="0.5" rx="0.25" transform="rotate(-90 15.75 16)" fill="white"></rect>
+</g><defs>
+<linearGradient id="paint0_linear_2001_2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+<stop stop-color="#676AFF" stop-opacity="0.9"></stop>
+<stop offset="1" stop-color="#13098F"></stop>
+</linearGradient>
+<clipPath id="clip0_2001_2">
+<rect width="32" height="32" fill="white"></rect>
+</clipPath>
+</defs></svg>
