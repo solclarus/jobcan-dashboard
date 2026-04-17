@@ -73,11 +73,16 @@ interface DayData {
 ## コマンド
 
 ```bash
-npm run dev      # 開発サーバー
-npm run build    # ビルド
-npm run check    # lint + format + typecheck (vp check)
-npm run test     # テスト
+vp dev           # 開発サーバー
+vp build         # ビルド
+vp check         # format + lint + typecheck（型ありlint込み）
+vp check --fix   # 自動修正
+vp test          # テスト
 ```
+
+- パッケージマネージャは pnpm（`vp install`が自動判定）
+- Gitフックは `vp config`（`prepare`スクリプトで自動セットアップ）
+- `vite.config.ts`の`staged`ブロックがpre-commitで走る
 
 ## パスエイリアス
 

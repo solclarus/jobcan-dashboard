@@ -50,14 +50,16 @@
 
 ```bash
 # インストール
-npm install   # npm / pnpm / yarn どれでも可
+vp install
 
 # 開発サーバー起動
-npm run dev
+vp dev
 
 # ビルド
-npm run build
+vp build
 ```
+
+`vp`が未インストールの場合は [Vite+](https://viteplus.dev/) を参照。
 
 ## データの追加
 
