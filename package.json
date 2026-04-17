@@ -26,8 +26,7 @@
     "check": "vp check",
     "lint": "vp lint",
     "format": "vp fmt",
-    "format:check": "vp fmt --check",
-    "prepare": "lefthook install"
+    "prepare": "vp config"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
@@ -49,7 +48,6 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "happy-dom": "^20.9.0",
-    "lefthook": "^2.1.0",
     "shadcn": "^3.8.4",
     "tailwindcss": "^4.1.18",
     "typescript": "~5.9.3",
@@ -59,10 +57,5 @@
     "vite": "npm:@voidzero-dev/vite-plus-core@0.1.18",
     "vitest": "npm:@voidzero-dev/vite-plus-test@0.1.18"
   },
-  "packageManager": "pnpm@10.33.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "lefthook"
-    ]
-  }
+  "packageManager": "pnpm@10.33.0"
 }

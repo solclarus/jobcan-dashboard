@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_GIT_HOOKS: "0"
     steps:
       - uses: actions/checkout@v5
 
