@@ -11,22 +11,6 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  build: {
-    rolldownOptions: {
-      output: {
-        codeSplitting: {
-          groups: [
-            { name: "react", test: /[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/ },
-            {
-              name: "recharts",
-              test: /[\\/]node_modules[\\/](recharts|d3-[^\\/]+|victory-vendor)[\\/]/,
-            },
-            { name: "radix", test: /[\\/]node_modules[\\/](radix-ui|@radix-ui)[\\/]/ },
-          ],
-        },
-      },
-    },
-  },
   test: {
     environment: "happy-dom",
     include: ["src/**/*.test.{ts,tsx}"],
