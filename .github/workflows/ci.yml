@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - uses: voidzero-dev/setup-vp@v1
         with:
@@ -19,7 +19,7 @@ jobs:
           cache: true
           version: "0.1.18"
 
-      - run: vp install
+      - run: vp install --frozen-lockfile
       - run: vp check
       - run: vp test
       - run: vp build
