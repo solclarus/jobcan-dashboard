@@ -59,6 +59,8 @@
     "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["lefthook"]
+    "onlyBuiltDependencies": [
+      "lefthook"
+    ]
   }
 }
