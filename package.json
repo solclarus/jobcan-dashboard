@@ -40,15 +40,15 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^25.6.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^25.9.1",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "happy-dom": "^20.9.0",
-    "tailwindcss": "^4.1.18",
+    "@vitejs/plugin-react": "^6.0.2",
+    "happy-dom": "^20.10.1",
+    "tailwindcss": "^4.3.0",
     "typescript": "~6.0.3",
-    "vite-plus": "^0.1.18"
+    "vite-plus": "^0.1.24"
   },
   "packageManager": "pnpm@10.33.0"
 }
